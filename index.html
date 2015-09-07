@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>ReactiveX</title>
+
+    <meta name="description"
+      content="Slidedeck on Reactive X">
+    <meta name="author"
+      content="Kevin Singer">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="main.css">
+
+    <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/simple.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ?
+        'node_modules/reveal.js/css/print/pdf.css' : 'node_modules/reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="node_modules/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+![](images/rx_logo.png)
+
+# ReactiveX
+
+<span class="fineprint">
+Logo taken from <http://reactivex.io>.
+</span>
+
+Notes:
+
+key-arrows
+
+`Space` - next
+
+`F` - Enter/Leave Fullscreen
+
+`o` - Overview
+
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section>
+
+<p>Senator Ted Stevens (Alaska)<p>
+<img src="images/Ted_Stevens.jpg" alt="Alaskan Senator Ted Stevens" />
+
+<blockquote>
+And again, the Internet is not something that you just dump something on. It's not a big truck. <strong>It's a series of tubes.</strong>
+</blockquote>
+
+
+<p class="fineprint">
+Image and quote taken from <a href="https://en.wikipedia.org/wiki/Series_of_tubes">https://en.wikipedia.org/wiki/Series_of_tubes</a></p>
+
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+![](images/rx_bros.png)
+
+Notes:
+"code as if you're a plumber"
+magical journey into pipe and stream land
+
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section>
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+# Streams
+## of Events and Data
+
+ongoing events ordered in time
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+## Two Views 
+
+as variable `data(t)` that changes over time 
+
+<img src="images/numbers.gif" alt="" style="box-shadow: 0 0 20px grey !important;padding:20px;height:40;width:40px;" />
+
+**vs**
+
+as stream `data$` of events/data-packets
+
+<img src="images/simple_observable.svg" alt="" style="height:60px" />
+
+<aside class="notes">
+
+everything is stream (measurements, clicks, pull/push-notifications, updates,...)
+"...could go even as far as to say {click/slide-change}"
+</aside>
+
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+## The Reactive Mantra
+
+![](images/reactive_mantra.jpg)
+
+<span class="fineprint">
+From: ["The introduction to Reactive Programming you've been missing"](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) by [@andrestaltz](https://twitter.com/andrestaltz) 
+</span>
+
+</script>
+</section>
+
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+# Marble Diagrams
+
+![](images/marble_diagrams_intro--no_text.png)
+
+<p class="fineprint">
+From <http://reactivex.io/documentation/observable.html>
+</p>
+
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+![](images/multi_click_example.png)
+
+<p class="fineprint">
+From ["The introduction to Reactive Programming you've been missing"](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) by [@andrestaltz](https://twitter.com/andrestaltz)
+</p>
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+# Examples
+
+* [map](http://rxmarbles.com/#map)
+* [filter](http://rxmarbles.com/#filter)
+* [scan](http://rxmarbles.com/#scan)
+* [merge](http://rxmarbles.com/#merge)
+* [combineLatest](http://rxmarbles.com/#combineLatest)
+* [debounce](http://rxmarbles.com/#debounce)
+
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section>
+<h1>Async</h1>
+
+<p> Iterable (Sync/"Pull"): </p>
+<pre><code class="javascript" data-trim>
+getDataFromLocalMemory()
+  .skip(10)
+  .take(5)
+  .map(s => s + ' transformed' )
+  .forEach(it => console.log('next: ' + it ))
+</code></pre> 
+
+<p> Observable (Async/"Push"): </p>
+<pre><code class="javascript" data-trim>
+getDataFromNetwork()
+  .skip(10)
+  .take(5)
+  .map(s => s + ' transformed' )
+  .subsribe(it => console.log('next: ' + it ))
+</code></pre> 
+
+<p class="fineprint">
+adapted from <a href="http://reactivex.io/intro.html">http://reactivex.io/intro.html</a></p>
+
+</section>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section>
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+# Demo 
+## Multi-client TodoMVC
+
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+## Architecture
+
+![](images/mvi.svg)
+
+Notes:
+needed, so demo is somewhat clear
+
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+## Technologies
+
+build with: 
+
+* [CycleJS](http://cycle.js.org/)-framework (based on Rx)
+* [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)-(virtual)-DOM-generation
+* [ImmutableJS](https://facebook.github.io/immutable-js/)-collections 
+* [Babel](https://babeljs.io/)-transpiler 
+* [JSPM](http://jspm.io/)
+
+Notes:
+@ImmutableJS: rx operations expect you to return new instances 
+
+</script>
+</section>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section>
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+# Pros & Cons
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+## FRP
+### Functional Reactive Programming
+
+* predictable
+    * side-effect free
+    * clean code-structure
+* asynchronity and concurrency 
+* abstraction &#8594; less code
+* caveat: learning curve 
+
+Notes:
+@clean-code: pipelines from start to end
+@learning-curve: new paradigm of thinking (functional and reactive)
+
+</script>
+</section>
+
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+# Cross-Plattform
+
+[**RxJava**](https://github.com/ReactiveX/RxJava),
+[**RxJS**](https://github.com/Reactive-Extensions/RxJS),
+[**RxAngular**](https://www.npmjs.com/package/rx-angular),
+[**RxAndroid**](https://github.com/ReactiveX/RxAndroid),
+[RxPY](https://github.com/ReactiveX/RxPY),
+[Rx.rb](https://github.com/Reactive-Extensions/Rx.rb),
+[Rx.NET](https://github.com/Reactive-Extensions/Rx.NET) (C#),
+[RxCocoa](https://github.com/kzaher/RxSwift) (iOS),
+[UniRx](https://github.com/neuecc/UniRx) (C#, Unity),
+[RxScala](https://github.com/ReactiveX/RxScala),
+[RxClojure](https://github.com/ReactiveX/RxClojure),
+[RxCpp](https://github.com/Reactive-Extensions/RxCpp),
+[RxGroovy](https://github.com/ReactiveX/RxGroovy),
+[RxJRuby](https://github.com/ReactiveX/RxJRuby),
+[RxKotlin](https://github.com/ReactiveX/RxKotlin),
+[RxSwift](https://github.com/kzaher/RxSwift),
+[RxNetty](https://github.com/ReactiveX/RxNetty) (Client-server framework)
+
+<p class="fineprint">
+from <http://reactivex.io/languages.html>
+</p>
+
+Notes: 
+Rx-Angular: wrapper for $observe and creating callbacks 
+
+</script>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+## Social Proof / Bandwagon
+    
+* Microsoft
+* Netflix
+* Github
+* Trello
+* SoundCloud
+* Couchbase
+* ...
+
+<p class="fineprint">
+From <http://reactivex.io/>
+</p>
+</script>
+</section>
+</section>
+
+<!-- -------------------------------------------- -->
+
+<section data-markdown data-separator-notes="^Notes:">
+<script type="text/template">
+
+# Start Reading 
+
+* Documentation on <http://reactivex.io/>  
+* [XGrommX's Rx-Book for RxJS](http://xgrommx.github.io/rx-book/)
+* Interactive diagrams on [Rx Marbles](http://rxmarbles.com/)
+* [RxJS @ Github - Resources](https://github.com/Reactive-Extensions/RxJS#resources)
+* [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) by [@andrestaltz](https://twitter.com/andrestaltz)
+
+Notes:
+<ul>
+    <li>Reactivex.io: great marble diagrams, documents the Rx-standard shared across all implementations</li>
+    <li>xgrommx:  live code-samples, documents all of RxJS = std + some convenience methods</li>
+</ul>
+</script>
+</section>
+
+
+
+      </div>
+
+    </div>
+
+    <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+    <script src="node_modules/reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: 'p. c',
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
+    
