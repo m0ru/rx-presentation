@@ -16,13 +16,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="./main.css">
 
-    <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/simple.css" id="theme">
+    <link rel="stylesheet" href="./node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="./node_modules/reveal.js/css/theme/simple.css" id="theme">
 
     <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="./node_modules/reveal.js/lib/css/zenburn.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -30,12 +30,12 @@
       link.rel = 'stylesheet';
       link.type = 'text/css';
       link.href = window.location.search.match( /print-pdf/gi ) ?
-        'node_modules/reveal.js/css/print/pdf.css' : 'node_modules/reveal.js/css/print/paper.css';
+        './node_modules/reveal.js/css/print/pdf.css' : './node_modules/reveal.js/css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
 
     <!--[if lt IE 9]>
-    <script src="node_modules/reveal.js/lib/js/html5shiv.js"></script>
+    <script src="./node_modules/reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->
   </head>
 
@@ -77,7 +77,7 @@ key-arrows
 <section>
 
 <p>Senator Ted Stevens (Alaska)<p>
-<img src="images/Ted_Stevens.jpg" alt="Alaskan Senator Ted Stevens" />
+<img src="./images/Ted_Stevens.jpg" alt="Alaskan Senator Ted Stevens" />
 
 <blockquote>
 And again, the Internet is not something that you just dump something on. It's not a big truck. <strong>It's a series of tubes.</strong>
@@ -124,13 +124,13 @@ ongoing events ordered in time
 
 as variable `data(t)` that changes over time 
 
-<img src="images/numbers.gif" alt="" style="box-shadow: 0 0 20px grey !important;padding:20px;height:40;width:40px;" />
+<img src="./images/numbers.gif" alt="" style="box-shadow: 0 0 20px grey !important;padding:20px;height:40;width:40px;" />
 
 **vs**
 
 as stream `data$` of events/data-packets
 
-<img src="images/simple_observable.svg" alt="" style="height:60px" />
+<img src="./images/simple_observable.svg" alt="" style="height:60px" />
 
 <aside class="notes">
 
@@ -394,8 +394,8 @@ Notes:
 
     </div>
 
-    <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
-    <script src="node_modules/reveal.js/js/reveal.js"></script>
+    <script src="./node_modules/reveal.js/lib/js/head.min.js"></script>
+    <script src="./node_modules/reveal.js/js/reveal.js"></script>
 
     <script>
 
@@ -412,12 +412,12 @@ Notes:
 
         // Optional reveal.js plugins
         dependencies: [
-          { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
-          { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
+          { src: './node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: './node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: './node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: './node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: './node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: './node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
       });
 
